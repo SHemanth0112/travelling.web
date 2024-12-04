@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoBus: Login & Registration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(to right, #1e3c72, #2a5298, #ff7e5f);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            transition: transform 0.3s ease;
+        }
+
+        .container:hover {
+            transform: scale(1.05);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #1e3c72;
+            font-family: 'Roboto', sans-serif; /* Attractive font for headings */
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative; /* Position relative for icon placement */
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 40px; /* Add padding for icon */
+            border: 2px solid #eee;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            border-color: #1e3c72;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(30, 60, 114, 0.1);
+        }
+
+        .form-group i {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #1e3c72; /* Icon color */
+        }
+
+        .submit-btn {
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            color: white;
+            padding: 14px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(30, 60, 114, 0.3);
+        }
+
+        .toggle-link {
+            text-align: center;
+            margin-top: 1rem;
+            color: #1e3c72;
+        }
+
+        .toggle-link a {
+            text-decoration: none;
+            color: #1e3c72;
+            font-weight: 500;
+        }
+
+        .toggle-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <form action="new.html" method="POST">
+            <div class="form-group">
+                <i class="fas fa-envelope"></i>
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-lock"></i>
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+            </div>
+            <button type="submit" class="submit-btn">Login</button>
+        </form>
+        <div class="toggle-link">
+            <p>Don't have an account? <a href="#register" onclick="toggleForm()">Register here</a></p>
+        </div>
+    </div>
+
+    <script>
+        function toggleForm() {
+            const container = document.querySelector('.container');
+            if (container.querySelector('h2').innerText === 'Login') {
+                container.querySelector('h2').innerText = 'Register';
+                container.querySelector('form').innerHTML = `
+                    <div class="form-group">
+                        <i class="fas fa-envelope"></i>
+                        <label for="reg-email">Email</label>
+                        <input type="email" id="reg-email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <i class="fas fa-lock"></i>
+                        <label for="reg-password">Password</label>
+                        <input type="password" id="reg-password" placeholder="Enter your password" required>
+                    </div>
+                    <div class="form-group">
+                        <i class="fas fa-lock"></i>
+                        <label for="confirm-password">Confirm Password</label>
+                        <input type="password" id="confirm-password" placeholder="Confirm your password" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Register</button>
+                `;
+                container.querySelector('.toggle-link').innerHTML = `
+                    <p>Already have an account? <a href="#login" onclick="toggleForm()">Login here</a></p>
+                `;
+            } else {
+                container.querySelector('h2').innerText = 'Login';
+                container.querySelector('form').innerHTML = `
+                    <div class="form-group">
+                        <i class="fas fa-envelope"></i>
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <i class="fas fa-lock"></i>
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="Enter your password" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Login</button>
+                `;
+                container.querySelector('.toggle-link').innerHTML = `
+                    <p>Don't have an account? <a href="#register" onclick="toggleForm()">Register here</a></p>
+                `;
+            }
+        }
+    </script>
+</body>
+</html> 

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #1e3c72, #2a5298, #ff7e5f);
+            color: #333;
+            padding: 2rem;
+            margin: 0;
+        }
+        .profile-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            margin: auto;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            color: #1e3c72;
+        }
+        .profile-info {
+            margin-bottom: 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 1rem;
+        }
+        .profile-info label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #4e54c8;
+        }
+        .profile-info p {
+            background: rgba(240, 240, 240, 0.8);
+            padding: 0.5rem;
+            border-radius: 5px;
+            color: #333;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.5rem 1.5rem;
+            background: #4e54c8;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s;
+            font-weight: 500;
+        }
+        .back-btn:hover {
+            background: #3b3f8c;
+        }
+        .icon {
+            margin-right: 0.5rem;
+            color: #4e54c8;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <h1><i class="fas fa-user-circle"></i> User Profile</h1>
+        <div class="profile-info">
+            <label for="username"><i class="fas fa-user icon"></i> Username:</label>
+            <p id="username">JohnDoe</p>
+        </div>
+        <div class="profile-info">
+            <label for="email"><i class="fas fa-envelope icon"></i> Email:</label>
+            <p id="email">johndoe@example.com</p>
+        </div>
+        <div class="profile-info">
+            <label for="phone"><i class="fas fa-phone icon"></i> Phone:</label>
+            <p id="phone">+1234567890</p>
+        </div>
+        <div class="profile-info">
+            <label for="bookings"><i class="fas fa-calendar-alt icon"></i> Upcoming Bookings:</label>
+            <p id="bookings">No upcoming bookings.</p>
+        </div>
+        <a href="new.html" class="back-btn">Back to Home</a>
+    </div>
+</body>
+</html> 

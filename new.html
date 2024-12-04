@@ -91,9 +91,9 @@
         }
 
         .search-form {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
 
         .form-group {
@@ -300,6 +300,146 @@
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(30,60,114,0.3);
         }
+
+        .offers-section {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .offers-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: white;
+        }
+
+        .offers-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .offer-card {
+            background: linear-gradient(135deg, #ff7e5f, #feb47b);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+            width: 250px;
+        }
+
+        .offer-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .animated-info {
+            margin-top: 4rem;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+            animation-delay: 0.5s;
+            color: white;
+        }
+
+        .offers-section {
+            margin: 4rem 0;
+            text-align: center;
+        }
+    
+        .offers-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: w;
+        }
+
+        .offers-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+    
+        .offer-card {
+            background: linear-gradient(135deg, #ff7e5f, #feb47b);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+            width: 250px;
+        }
+
+        .offer-card:hover {
+            transform: translateY(-5px);
+        }
+    
+        .animated-info {
+            margin-top: 4rem;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Additional styles for the new section */
+        .additional-info {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin: 4rem 0;
+            text-align: center;
+            font-family: 'Poppins', sans-serif; /* Ensure the font is consistent */
+        }
+
+        .additional-info h2 {
+            font-size: 2rem;
+            color: #1e3c72;
+            margin-bottom: 1rem;
+        }
+
+        .additional-info p {
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .additional-info ul {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0;
+            text-align: left;
+            display: inline-block; /* Center the list */
+        }
+
+        .additional-info li {
+            font-size: 1rem;
+            color: #666;
+            margin: 0.5rem 0;
+        }
+
+        .additional-info i {
+            color: #1e3c72; /* Icon color */
+            margin-right: 0.5rem;
+        }
+
+        .icon-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .animated-icon {
+            font-size: 24px;
+            color: #1e3c72;
+        }
+
     </style>
 </head>
 <body>
@@ -317,12 +457,13 @@
             <li><a href="my-bookings.html">My Bookings</a></li>
             <li><a href="contact.html">Contact Us</a></li>
             <li><a href="faqs.html">FAQs</a></li>
+            <li><a href="profile.html"><i class="fas fa-user-circle"></i> Profile</a></li>
         </ul>
     </nav>
 
     <div class="main-container">
         <div class="hero-section">
-            <h1 class="hero-title">Your Journey, Our Priority</h1>
+            <h1 class="hero-title"><i class="fas fa-bus"></i> Your Journey, Our Priority</h1>
             <p class="hero-subtitle">Book bus tickets easily with India's leading bus booking platform</p>
         </div>
 
@@ -332,6 +473,9 @@
                 <div class="form-group">
                     <label for="from">From</label>
                     <input type="text" id="from" placeholder="Enter source city">
+                </div>
+                <div class="icon-container" id="swapIcon" title="Swap Destinations">
+                    <i class="fas fa-exchange-alt animated-icon"></i>
                 </div>
                 <div class="form-group">
                     <label for="to">To</label>
@@ -343,8 +487,7 @@
                 </div>
                 <div class="form-group">
                     <button type="submit" class="search-btn">
-                        <i class="fas fa-search"></i>
-                        Search Buses
+                        <i class="fas fa-search"></i> Search Buses
                     </button>
                 </div>
             </form>
@@ -385,6 +528,35 @@
                 <a href="contact.html" class="feature-link">Get Help</a>
             </div>
         </div>
+
+        <div class="additional-info">
+            <h2>Our Commitment to You</h2>
+            <p>At GoBus, we prioritize your comfort and convenience. Our buses are equipped with modern amenities, ensuring a pleasant journey. We offer:</p>
+            <ul>
+                <li><i class="fas fa-check-circle"></i> Comfortable seating with ample legroom</li>
+                <li><i class="fas fa-check-circle"></i> Onboard refreshments and entertainment</li>
+                <li><i class="fas fa-check-circle"></i> Real-time tracking of your bus</li>
+                <li><i class="fas fa-check-circle"></i> Flexible booking options</li>
+            </ul>
+            <p>Join millions of satisfied customers who trust us for their travel needs!</p>
+        </div>
+        <div class="offers-section">
+            <h2 class="offers-title">Trending Offers</h2>
+            <div class="offers-container">
+                <div class="offer-card">
+                    <h3>20% Off on First Booking</h3>
+                    <p>Use code <strong>FIRST20</strong> at checkout.</p>
+                </div>
+                <div class="offer-card">
+                    <h3>Buy 1 Get 1 Free</h3>
+                    <p>On select routes. Limited time offer!</p>
+                </div>
+                <div class="offer-card">
+                    <h3>Free Cancellation</h3>
+                    <p>Cancel your booking up to 24 hours before departure.</p>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -393,6 +565,15 @@
 
         menuBtn.addEventListener('click', () => {
             navMenu.classList.toggle('active');
+        });
+
+        document.getElementById('swapIcon').addEventListener('click', function() {
+            const fromInput = document.getElementById('from');
+            const toInput = document.getElementById('to');
+            
+            const temp = fromInput.value;
+            fromInput.value = toInput.value;
+            toInput.value = temp;
         });
     </script>
 </body>
