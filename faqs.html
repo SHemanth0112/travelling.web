@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoBus: FAQs</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(to right, #1e3c72, #2a5298, #ff7e5f);
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 1rem 5%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1e3c72;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 1rem;
+            list-style: none;
+        }
+
+        .nav-menu li a {
+            color: #1e3c72;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu li a:hover,
+        .nav-menu li a.active {
+            background: #1e3c72;
+            color: white;
+        }
+
+        .menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #1e3c72;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 1rem;
+                gap: 1rem;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-menu li {
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-menu li a {
+                display: block;
+                padding: 12px;
+            }
+
+            .main-container {
+                margin-top: 4rem;
+            }
+        }
+
+        /* Add FAQ specific styles */
+        .faq-container {
+            max-width: 1200px;
+            margin: 6rem auto 2rem;
+            padding: 0 20px;
+        }
+
+        .hero-section {
+            text-align: center;
+            color: white;
+            margin-bottom: 3rem;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .faq-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 1.5rem;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .faq-question {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1e3c72;
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: #e9ecef;
+        }
+
+        .faq-answer {
+            color: #666;
+            line-height: 1.6;
+            display: none;
+            padding: 1rem;
+            background: #fff;
+            border-radius: 0 0 8px 8px;
+            margin-top: -8px;
+        }
+
+        .faq-item.active .faq-question {
+            background: #1e3c72;
+            color: white;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+            border: 1px solid #eee;
+            border-top: none;
+        }
+
+        .faq-categories {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .category-btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .category-btn:hover,
+        .category-btn.active {
+            background: white;
+            color: #1e3c72;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="new.html" class="navbar-brand">
+            <i class="fas fa-bus"></i>
+            GoBus
+        </a>
+        <button class="menu-btn" id="menuBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="new.html">Home</a></li>
+            <li><a href="book-tickets.html">Book Tickets</a></li>
+            <li><a href="my-bookings.html">My Bookings</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="faqs.html" class="active">FAQs</a></li>
+        </ul>
+    </nav>
+
+    <div class="faq-container">
+        <div class="hero-section">
+            <h1 class="hero-title">Frequently Asked Questions</h1>
+            <p class="hero-subtitle">Find answers to common questions about our bus booking service</p>
+        </div>
+
+        <div class="faq-categories">
+            <button class="category-btn active">All</button>
+            <button class="category-btn">Booking</button>
+            <button class="category-btn">Cancellation</button>
+            <button class="category-btn">Payment</button>
+            <button class="category-btn">Travel</button>
+        </div>
+
+        <div class="faq-section">
+            <div class="faq-item">
+                <div class="faq-question">
+                    How do I book a bus ticket? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Booking a bus ticket is simple! Just follow these steps:
+                    1. Select your source and destination
+                    2. Choose your travel date
+                    3. Select from available buses
+                    4. Choose your preferred seats
+                    5. Fill in passenger details
+                    6. Make payment
+                    You'll receive your ticket confirmation via email and SMS.
+                    <p class="help-text">Still have questions? <a href="contact.html">Contact Us</a></p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    What payment methods are accepted? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    We accept various payment methods including credit/debit cards, net banking, UPI, and popular digital wallets. All payments are processed through secure payment gateways to ensure your financial information is safe.
+                    <p class="help-text">Still have questions? <a href="contact.html">Contact Us</a></p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    How can I cancel my ticket? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    To cancel your ticket, go to 'My Bookings', select the ticket you wish to cancel, and click on the 'Cancel Booking' button. Cancellation charges may apply based on how close to the journey date you're cancelling. Refunds typically process within 5-7 business days.
+                    <p class="help-text">Still have questions? <a href="contact.html">Contact Us</a></p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    What is your refund policy? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Refund amount depends on when you cancel:
+                    - 48+ hours before departure: 100% refund
+                    - 24-48 hours before departure: 50% refund
+                    - Less than 24 hours: No refund
+                    Refunds are processed to the original payment method within 5-7 business days.
+                    <p class="help-text">Still have questions? <a href="contact.html">Contact Us</a></p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    Can I modify my booking? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Yes, you can modify your booking up to 24 hours before departure. Go to 'My Bookings', select your booking, and click 'Modify Booking'. You can change the travel date or passenger details. Additional charges may apply based on fare differences.
+                    <p class="help-text">Still have questions? <a href="contact.html">Contact Us</a></p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    What documents do I need to carry? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Please carry:
+                    1. Ticket confirmation (digital or printed)
+                    2. Valid government-issued ID proof
+                    3. Student ID (if student discount was availed)
+                    These documents are mandatory for boarding the bus.
+                    <p class="help-text">Still have questions? <a href="contact.html">Contact Us</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const navMenu = document.getElementById('navMenu');
+
+        menuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Add FAQ toggle functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                faqItem.classList.toggle('active');
+            });
+        });
+
+        // Add category filter functionality
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html> 

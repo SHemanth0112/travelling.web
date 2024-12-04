@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoBus: Available Buses</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Copy the same base styles from new.html */
+        /* Adding additional styles for bus listing */
+        .bus-list {
+            margin-top: 2rem;
+        }
+
+        .bus-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+
+        .bus-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .bus-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1e3c72;
+        }
+
+        .bus-type {
+            background: #e3f2fd;
+            color: #1e3c72;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .bus-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .detail-item {
+            text-align: center;
+        }
+
+        .detail-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .detail-value {
+            color: #333;
+            font-weight: 500;
+            margin-top: 0.3rem;
+        }
+
+        .bus-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #eee;
+            padding-top: 1rem;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1e3c72;
+        }
+
+        .select-seats-btn {
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: transform 0.2s;
+        }
+
+        .select-seats-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .filters {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .filter-title {
+            color: #1e3c72;
+            margin-bottom: 1rem;
+        }
+
+        .filter-options {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-option {
+            background: #f5f5f5;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-option:hover {
+            background: #1e3c72;
+            color: white;
+        }
+
+        body {
+            background: linear-gradient(to right, #1e3c72, #2a5298, #ff7e5f);
+            min-height: 100vh;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 1rem 5%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1e3c72;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 1rem;
+            list-style: none;
+        }
+
+        .nav-menu li a {
+            color: #1e3c72;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu li a:hover,
+        .nav-menu li a.active {
+            background: #1e3c72;
+            color: white;
+        }
+
+        .menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #1e3c72;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 6rem auto 2rem;
+            padding: 0 20px;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 1rem;
+                gap: 1rem;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-menu li {
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-menu li a {
+                display: block;
+                padding: 12px;
+            }
+
+            .main-container {
+                margin-top: 4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Same navbar as new.html -->
+    <nav class="navbar">
+        <a href="new.html" class="navbar-brand">
+            <i class="fas fa-bus"></i>
+            GoBus
+        </a>
+        <button class="menu-btn" id="menuBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="new.html">Home</a></li>
+            <li><a href="book-tickets.html" class="active">Book Tickets</a></li>
+            <li><a href="my-bookings.html">My Bookings</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="faqs.html">FAQs</a></li>
+        </ul>
+    </nav>
+
+    <div class="main-container">
+        <div class="hero-section">
+            <h1 class="hero-title">Available Buses</h1>
+            <p class="hero-subtitle">Choose from hundreds of buses for your journey</p>
+        </div>
+        <div class="filters">
+            <h3 class="filter-title">Filters</h3>
+            <div class="filter-options">
+                <div class="filter-option">AC Buses</div>
+                <div class="filter-option">Non-AC Buses</div>
+                <div class="filter-option">Sleeper</div>
+                <div class="filter-option">Seater</div>
+                <div class="filter-option">Early Morning</div>
+                <div class="filter-option">Night</div>
+            </div>
+        </div>
+
+        <div class="bus-list">
+            <!-- Bus Card 1 -->
+            <div class="bus-card">
+                <div class="bus-header">
+                    <span class="bus-name">Royal Travels</span>
+                    <span class="bus-type">AC Sleeper</span>
+                </div>
+                <div class="bus-details">
+                    <div class="detail-item">
+                        <div class="detail-label">Departure</div>
+                        <div class="detail-value">10:00 PM</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Duration</div>
+                        <div class="detail-value">8h 30m</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Arrival</div>
+                        <div class="detail-value">6:30 AM</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Available Seats</div>
+                        <div class="detail-value">23</div>
+                    </div>
+                </div>
+                <div class="bus-actions">
+                    <div class="price">₹899</div>
+                    <a href="my-bookings.html" class="select-seats-btn">Select Seats</a>
+                </div>
+            </div>
+
+            <!-- Bus Card 2 -->
+            <div class="bus-card">
+                <div class="bus-header">
+                    <span class="bus-name">Express Travels</span>
+                    <span class="bus-type">Non-AC Seater</span>
+                </div>
+                <div class="bus-details">
+                    <div class="detail-item">
+                        <div class="detail-label">Departure</div>
+                        <div class="detail-value">11:30 PM</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Duration</div>
+                        <div class="detail-value">7h 45m</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Arrival</div>
+                        <div class="detail-value">7:15 AM</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Available Seats</div>
+                        <div class="detail-value">15</div>
+                    </div>
+                </div>
+                <div class="bus-actions">
+                    <div class="price">₹599</div>
+                    <button class="select-seats-btn">Select Seats</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const navMenu = document.getElementById('navMenu');
+
+        menuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
